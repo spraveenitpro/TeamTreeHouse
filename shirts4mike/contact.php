@@ -1,15 +1,59 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$name = $_POST["name"];
-	$email = $_POST["email"];
-	$message = $_POST["message"];
+	$name = trim($_POST["name"]);
+	$email = trim($_POST["email"]);
+	$message = trim($_POST["message"]);
+
+	if ($name == "" OR $email == "" OR $message == "") {
+
+		echo "You must specify a value for name , email and Message";
+		exit;
+	}
+
+	foreach( $_POST as $value ){
+ 		 if( stripos($value,'Content-Type:') !== FALSE ){
+    	 echo "There was a pbm in your information";
+    	 exit;
+  }
+}
+
+	if ($_POST["address"] != ""){
+
+		echo "Error in your form submission !";
+		exit;
+	}
+
+	require_once("inc/phpmailer/class.phpmailer.php");
+	$mail = new PHPMailer();
+
+	if (!$mail->ValidateAddress($email)) {
+
+		echo "You must specify a Valid email Address";
+		exit;
+	}
+
+
 	$email_body = "";
-	$email_body = $email_body . "Name : " . $name . "\n" ;
-	$email_body = $email_body . "Email : ". $email . "\n";
+	$email_body = $email_body . "Name : " . $name . "<br>" ;
+	$email_body = $email_body . "Email : ". $email . "<br>";
 	$email_body = $email_body . "Message : ". $message ;
 
 	//TODO : Send Email
+	
+
+	$mail->SetFrom($email, $name);
+	$address = "order@mike.com";
+	$mail->AddAddress($address, "Mike");
+	$mail->Subject    = "Shirts 4 MIke Submission !". $name;
+	$mail->MsgHTML($email_body);
+	
+
+	if(!$mail->Send()) {
+	  echo "There was a problem sending your message: " . $mail->ErrorInfo;
+	  exit;
+	}  
+
 	header("Location: contact.php?status=thanks");
 	exit;
 } 
@@ -57,6 +101,15 @@ include('inc/header.php'); ?>
 							</th>
 							<td>
 								<textarea name="message" id= "message"></textarea>
+							</td>
+						</tr>
+						<tr style="display:none;">
+							<th>
+								<label for="address">Address </label>
+							</th>
+							<td>
+								<input type="text" name="address" id= "message"> 
+								<p>Humans and Frogs please leave this field blank!</p>
 							</td>
 						</tr>
 	                </table>
