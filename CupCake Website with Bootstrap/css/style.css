@@ -1,0 +1,82 @@
+body {
+
+	font-family: 'Nunito', sans-serif;
+	color: #FAF3BC;
+	background: #420600 url('../img/bg-texture.jpg') repeat;
+}
+
+ 
+
+ .nav li a, 
+ .nav li a:hover {
+
+ 	background: none;
+ 	color:  #FAF3BC;
+ 	font-size: 1.1em;
+
+ }
+
+ .nav {
+
+ 	margin-top: 100px;
+ }
+
+
+ h1, h2, h3, h4, h5, h6  {
+	font-family: 'Nunito', sans-serif;
+
+}
+
+.cta-button {
+
+	color: #FAF3BC;
+	background: #4FB69F url('../img/texture.png') no-repeat right top;
+	padding: 15px 30px;
+	margin: 40px 0px;
+	border-radius: 25px;
+	text-transform: uppercase;
+	border: none;
+	font-size: 1.1em;
+
+}
+
+h2 {
+font-size: 1.5em;
+color: #B4C34F;
+font-weight: bold;
+}
+h1 {
+font-size: 1.9em;
+ 
+}
+
+p{
+
+	font-size: 1.2em;
+}
+
+#new-cupcakes img{
+
+  	border: 8px solid #FAF3BC;
+  	margin: 0 0 20px 0;
+
+}
+
+#featured-cupcake img {
+
+	border: 8px solid #FAF3BC;
+}
+
+#copyright {
+
+
+	border-top: 8px solid #2A0400;
+	padding: 10px 0px;
+	margin: 15px 0px;;
+	text-align: center;
+}
+
+#intro p{
+
+	margin-top: 40px;
+}
